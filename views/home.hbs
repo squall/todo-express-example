@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>Todo</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <form action="/todo/create" method="post" accept-charset="utf-8">
+        <input type="text" class="form-control" autofocus id="content" name="content" placeholder="write something">
+      </form>
+    </div>
+
+    <div class="col-md-12 mt-3">
+      <ul class="list-group mb-3">
+        
+        {{#each todos}}
+          
+        <li class="list-group-item d-flex justify-content-between">
+          <span class="edit"><a href="/todo/edit/{{_id}}">{{content}}</a></span>
+          <strong>
+            <a href="/todo/delete/{{_id}}">
+              <span class="text-danger material-icons icon-image-preview">remove_circle</span>
+            </a>
+          </strong>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>

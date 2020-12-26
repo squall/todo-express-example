@@ -1,0 +1,39 @@
+<style>
+  a:link {
+    text-decoration: none;
+  }
+</style>
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>Todo</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <form action="/todo/create" method="post" accept-charset="utf-8">
+        <input type="text" class="form-control" id="content" name="content" placeholder="write something">
+      </form>
+    </div>
+
+    <div class="col-md-12 mt-3">
+      <ul class="list-group mb-3 ">
+
+        {{#each todos}}
+          {{#ifeq ../editId _id }}
+          <li class="list-group-item d-flex justify-content-between">
+            <form action="/todo/update/{{_id}}" method="post" accept-charset="utf-8">
+              <input class="form-control col-md-12" autofocus type="text" name="content" value="{{content}}">
+            </form>
+            <strong><span class="text-danger material-icons icon-image-preview">remove_circle</span></strong>
+          </li>
+          {{else}}
+          <li class="list-group-item d-flex justify-content-between">
+            <span class="edit"><a href="/todo/edit/{{_id}}">{{content}}</a></span>
+            <strong><span class="text-danger material-icons icon-image-preview">remove_circle</span></strong>
+          </li>
+          {{/ifeq}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
