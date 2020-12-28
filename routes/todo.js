@@ -6,8 +6,7 @@ router.get('/', function(req, res) {
   let emitter = DB.getTodo();
   
   emitter.on("ok", function (data) {
-    let d = JSON.parse(JSON.stringify(data));
-    res.render('home',{todos: d});
+    res.render('home',{todos: data});
   });
 });
 
@@ -17,7 +16,6 @@ router.get('/edit/:id', function(req, res) {
   let emitter = DB.getTodo();
   
   emitter.on("ok", function (data) {
-    let d = JSON.parse(JSON.stringify(data));
     res.render('edit',{editId: id, todos: data});
   });
 });
