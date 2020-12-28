@@ -19,12 +19,16 @@
             <form action="/todo/update/{{_id}}" method="post" accept-charset="utf-8">
               <input class="form-control col-md-12" autofocus type="text" name="content" value="{{content}}">
             </form>
-            <strong><span class="text-danger material-icons icon-image-preview">remove_circle</span></strong>
+            <a href="/todo/delete/{{_id}}">
+              <span class="text-danger material-icons icon-image-preview">remove_circle</span>
+            </a>
           </li>
           {{else}}
           <li class="list-group-item d-flex justify-content-between">
             <span class="edit"><a href="/todo/edit/{{_id}}">{{content}}</a></span>
-            <strong><span class="text-danger material-icons icon-image-preview">remove_circle</span></strong>
+            <a href="/todo/delete/{{_id}}">
+              <span class="text-danger material-icons icon-image-preview">remove_circle</span>
+            </a>
           </li>
           {{/ifeq}}
         {{/each}}
