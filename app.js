@@ -1,13 +1,12 @@
 var express = require('express');
-var port = process.env.PORT || 8080;
-var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-
 var exphbs = require('express-handlebars');
 var http = require('http');
+var port = process.env.PORT || 8888;
 var app = express();
 var DB = require("./lib/db.js");
 
+//設定路由
 var todoRouter = require('./routes/todo');
 
 var init_web = function () {
@@ -32,8 +31,11 @@ app.get('/', function (req, res, next) {
   
 app.engine('.hbs', exphbs({
     extname: '.hbs',
-    helpers: require('./config/handlebars-helpers')
-
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true
+    },
+    helpers: require('./lib/handlebars-helpers')
 }));
 
 app.set('view engine', '.hbs');

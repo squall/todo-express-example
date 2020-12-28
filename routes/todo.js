@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var DB = require('../lib/db.js');
 
-/* GET users listing. */
 router.get('/', function(req, res) {
   let emitter = DB.getTodo();
   
@@ -19,7 +18,7 @@ router.get('/edit/:id', function(req, res) {
   
   emitter.on("ok", function (data) {
     let d = JSON.parse(JSON.stringify(data));
-    res.render('edit',{editId: id, todos: d});
+    res.render('edit',{editId: id, todos: data});
   });
 });
 
@@ -28,7 +27,6 @@ router.post('/create', function(req, res) {
   let emitter = DB.createTodo(data);
   
   emitter.on("ok", function (data) {
-    //res.json({ status: 200, data: data });
     res.redirect( '/todo' );
   });
 
@@ -46,7 +44,6 @@ router.post('/update/:id', function(req, res) {
   let emitter = DB.updateTodo(data, cond);
   
   emitter.on("ok", function (data) {
-    //res.json({ status: 200, data: data });
     res.redirect( '/todo' );
   });
 
